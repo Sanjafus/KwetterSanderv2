@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+      <h:head>
+        <title>Kwetter</title>
+    </h:head>
+    <h:body>
+        <b:navBar brand="Kwetter: Profiel van #{homeBean.mockUser().name}">
+            <b:navbarLinks pull="right">
+                <b:navLink value="Logout" href="inlog.xhtml"></b:navLink>
+                <b:navLink value="To Main" href="main.xhtml"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container>
+            <b:row>
+                <b:column span="8">
+                    <b:panel title="S0" collapsible="true">
+                        <b:label text="#{homeBean.mockUser().name}" id="label"/>
+                    </b:panel>
+                    <b:panel title="S1 Tweets" collapsible="true">
+                        <h:outputText value="My Kweets" />
+                        <ui:repeat var="kweet" value="#{homeBean.allTweets}">
+                            <b:panel title="#{kweet.postDate}" collapsible="true">
+                                <h:outputText value="#{kweet.id}" />
+                                <br/>
+                                <h:outputText value="#{kweet.tweetText}" />
+                                <br/>
+                                <h:outputText value="#{kweet.postDate}" />
+                                <br/>
+                                <h:outputText value="#{kweet.postedFrom}" />
+                                <br/>
+                                <h:outputText value="#{kweet.user.name}" />
+                                <br/>
+                            </b:panel>
+                        </ui:repeat>
+                    </b:panel>
+                </b:column>
+                <!--<b:column span="4">
+                    <b:panel title="S2 Details" collapsible="true">
+                        <h:outputText value="Name: #{sessionBean.naargebruiker.screenName}" />
+                        <br/>
+                        <h:outputText value="Location: #{sessionBean.naargebruiker.location}" />
+                        <br/>
+                        <h:outputText value="Website: #{sessionBean.naargebruiker.website}" />
+                        <br/>
+                        <h:outputText value="Bio: #{sessionBean.naargebruiker.biography}" />
+                        <br/>
+                        <h:form>
+                            <b:commandButton value="Follow this person" action="#{profileController.doFollowing()}" />
+                        </h:form>
+                    </b:panel>
+                    <b:panel title="S3" collapsible="true">
+                        <h:outputText value="Followers: #{sessionBean.naargebruiker.followedBy.size()}" />
+                        <br/>
+                        <h:outputText value="Following: #{sessionBean.naargebruiker.following.size()}" />
+                        <br/>
+                        <h:outputText value="Tweets: #{sessionBean.naargebruiker.kweets.size()}" />
+                    </b:panel>
+                    <b:panel title="S4 Following" collapsible="true">
+                        <ui:repeat var="user" value="#{profileController.getAllFollowing()}">
+                            <h:form id="inlogForm">
+                                <b:panel title="#{user.screenName}" collapsible="true">
+                                    <h:outputText value="#{user.biography}" />
+                                    <br/>
+                                    <h:outputText value="#{user.location}" />
+                                    <br/>
+                                    <b:commandButton value="Go To Profile" action="#{profileController.doProfile(user.screenName)}" />
+                                </b:panel>
+                            </h:form>
+                        </ui:repeat>
+                    </b:panel>
+                </b:column>-->
+            </b:row>
+        </b:container>
+    </h:body>
+</html>
+
